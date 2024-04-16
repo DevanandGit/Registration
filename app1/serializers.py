@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from .models import Events, Delegates, DelegateEvent, Entertainment, DelegateEntertainment
 
+class EntertainmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Entertainment
+        fields = '__all__'
+
 class EventsSerializer(serializers.ModelSerializer):
+    games = EntertainmentSerializer(many = True, read_only = True)
     class Meta:
         model = Events
         fields = '__all__'
@@ -15,14 +21,8 @@ class DelegateEventSerializer(serializers.ModelSerializer):
         fields = ('event', 'is_active')
 
 
-class EntertainmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Entertainment
-        fields = '__all__'
-
-
 class DelegateEntertainmentSerializer(serializers.ModelSerializer):
-    entertainment = EventsSerializer()  # Nested serializer for event details
+    # entertainment = EventsSerializer(many = True, read_only = True)  # Nested serializer for event details
 
     class Meta:
         model = DelegateEntertainment
