@@ -72,7 +72,7 @@ class RegisterCustomEvents(APIView):
         img = qr.make_image(fill_color="black", back_color="white")
 
         # Save the QR code image temporarily
-        qr_image_path = f"static/qr_codes/{instance.ktu_id}.png"
+        qr_image_path = f"media/qr_codes/{instance.ktu_id}.png"
         img.save(qr_image_path)
         html_content = render_to_string('post_reg_form.html', {'user_details':user_details, 'qr_image_path':qr_image_path})
 
