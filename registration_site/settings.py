@@ -132,9 +132,9 @@ USE_TZ = True
 # MEDIA_ROOT = 'D:/python_projects/projects/registration_site/media/'
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/usr/local/lsws/Registration/reg/Registration/public/static/'
+STATIC_ROOT = '/usr/local/lsws/Mocker/myenv/Registration/public/static/'
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/usr/local/lsws/Registration/reg/Registration/public/media/'
+MEDIA_ROOT = '/usr/local/lsws/Mocker/myenv/Registration/public/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
