@@ -1,6 +1,8 @@
 from rest_framework import viewsets
-from .models import Events, Delegates, DelegateEvent
-from .serializers import EventsSerializer, DelegatesSerializer
+from .models import (Events, Delegates, DelegateEvent, Entertainment, DelegateEntertainment)
+from .serializers import (EventsSerializer, DelegatesSerializer, 
+                          EntertainmentSerializer, DelegateEntertainmentSerializer, 
+                          EntertainmentSerializer)
 from rest_framework.generics import (CreateAPIView, ListCreateAPIView, 
                             RetrieveUpdateDestroyAPIView, GenericAPIView, 
                             RetrieveAPIView, ListAPIView)
@@ -23,6 +25,11 @@ from django.core.mail import EmailMultiAlternatives
 class EventsViewSet(viewsets.ModelViewSet):
     queryset = Events.objects.all()
     serializer_class = EventsSerializer
+
+
+class EntertainmentViewSet(viewsets.ModelViewSet):
+    queryset = Entertainment.objects.all()
+    serializer_class = EntertainmentSerializer
 
     
 class RegisterCustomEvents(APIView):
@@ -72,7 +79,8 @@ class RegisterCustomEvents(APIView):
         img = qr.make_image(fill_color="black", back_color="white")
 
         # Save the QR code image temporarily
-        qr_image_path = f"media/qr_codes/{instance.ktu_id}.png"
+        
+        qr_image_path = f"/usr/local/lsws/Mocker/myenv/Registration/public/media/qr_codes/{instance.ktu_id}.png"
         img.save(qr_image_path)
         html_content = render_to_string('post_reg_form.html', {'user_details':user_details, 'qr_image_path':qr_image_path})
 
@@ -176,8 +184,5 @@ class CheckForEvents(APIView):
             return Response(response, status=status.HTTP_404_NOT_FOUND)
 
             
-
-                
-
-
+# class 
 
