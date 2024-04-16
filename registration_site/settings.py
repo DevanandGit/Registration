@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-c4xo4%o_c7@0ph7xx#8tr73=&iapk*%3a6sihcldqe#7ahvp8r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['193.203.163.77', 'mindiser.in', 'api.mindiser.in']
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ['193.203.163.77', 'mindiser.in', 'api.mindiser.in']
 
 
 # Application definition
