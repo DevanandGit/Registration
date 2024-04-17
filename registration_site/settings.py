@@ -77,18 +77,18 @@ WSGI_APPLICATION = 'registration_site.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'registration',
-    #     'USER': 'devanandjoly',
-    #     'PASSWORD': 'Devanand@123',
-    #     'HOST': '193.203.163.77',  # or the IP address of your VPS
-    #     'PORT': '5432',           # Leave it empty for default PostgreSQL port (5432)
-    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'registration',
+        'USER': 'devanandjoly',
+        'PASSWORD': 'Devanand@123',
+        'HOST': '193.203.163.77',  # or the IP address of your VPS
+        'PORT': '5432',           # Leave it empty for default PostgreSQL port (5432)
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
