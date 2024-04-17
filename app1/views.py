@@ -45,7 +45,7 @@ class RegisterCustomEvents(APIView):
         events_id = request.data.get('events_id')
         data_str = "1#2#3"
         data_list = events_id.split('#')
-        events_id_list = [item for item in data_list]
+        events_id_list = [str(item) for item in data_list]
         # events_id_str = request.data.get('events_id', [])
 
         # events_id_list = ast.literal_eval(events_id_str)
