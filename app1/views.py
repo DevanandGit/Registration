@@ -22,7 +22,7 @@ from .utlis import send_email, checkevent
 from django.core.mail import EmailMultiAlternatives
 from datetime import datetime, timedelta
 from django.core.exceptions import ObjectDoesNotExist
-
+import json
 
 class EventsViewSet(viewsets.ModelViewSet):
     queryset = Events.objects.all()
@@ -42,10 +42,13 @@ class RegisterCustomEvents(APIView):
         semester = request.data.get('semester')
         ktu_id = request.data.get('ktu_id')
         gmail = request.data.get('gmail')
-        events = request.data.get('events')
-        events_id_str = request.data.get('events_id', [])
+        events_id = request.data.get('events_id')
+        data_str = "1#2#3"
+        data_list = events_id.split('#')
+        events_id_list = [item for item in data_list]
+        # events_id_str = request.data.get('events_id', [])
 
-        events_id_list = ast.literal_eval(events_id_str)
+        # events_id_list = ast.literal_eval(events_id_str)
         
         delegate_instance = Delegates.objects.filter(ktu_id=ktu_id).first()
         print(f"delegate instance is: {delegate_instance}")
@@ -68,7 +71,6 @@ class RegisterCustomEvents(APIView):
             response = {'success':True, 'message': 'Events Added successfully'}
             return Response(response, status=status.HTTP_200_OK)
         else:
-            
             instance = Delegates.objects.create(name = name, semester = semester,
                                             ktu_id = ktu_id,
                                             gmail = gmail)
@@ -114,6 +116,7 @@ class RegisterCustomEvents(APIView):
 
             # Save the QR code image temporarily
             # /usr/local/lsws/Mocker/myenv/Registration/public/media/
+            # /usr/local/lsws/Mocker/myenv/Registration/public/media
             qr_image_path = f"/usr/local/lsws/Mocker/myenv/Registration/public/media/qr_codes/{instance.ktu_id}.png"
             img.save(qr_image_path)
             html_content = render_to_string('post_reg_form.html', {'user_details':user_details, 'qr_image_path':qr_image_path})
@@ -197,7 +200,7 @@ class CheckForEvents(APIView):
         event_id = self.request.query_params.get('event_id')
 
         is_registered = checkevent(ktu_id=ktu_id, event_id=event_id)
-
+        print(is_registered)
         if is_registered == True:
             if event_id == 1:#game:
                 game_id = self.request.query_params.get('game_id')
